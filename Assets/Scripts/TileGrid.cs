@@ -20,6 +20,7 @@ public class TileGrid : MonoBehaviour
 
     private void Start()
     {
+        // looping through all rows and cells and setting its coordinates
         for (int y = 0; y < rows.Length; y++)
         {
             for (int x = 0; x < rows[y].cells.Length; x++)
@@ -27,5 +28,36 @@ public class TileGrid : MonoBehaviour
                 rows[y].cells[x].coordinates = new Vector2Int(x, y);
             }
         }
+    }
+    // this method will return a random empty cell
+    public TileCell GetRandomEmptyCell()
+    {
+        // a random index
+        int index = Random.Range(0, cells.Length);
+
+        // first random index will be the starting index
+        int startingIndex = index;
+
+        // if the cell that exist on that index is occupied
+        while (cells[index].isOccupied)
+        {
+            // then check one index forward
+            index++;
+            // and if index is going bigger then the total cell length
+            if (index >= cells.Length)
+            {
+                // then set index to zero
+                index = 0;
+            }
+            // if after setting zero any of the cell is not empty till the starting index 
+            if (index == startingIndex)
+            {
+                // return null
+                return null;
+            }
+        }
+
+        // if the cell is empty return its index
+        return cells[index];
     }
 }

@@ -30,4 +30,20 @@ public class Tile : MonoBehaviour
         text.text = number.ToString();
     }
 
+    public void Spawn(TileCell cell)
+    {
+        if (this.cell != null)
+        {
+            this.cell.tile = null;
+        }
+        
+        this.cell = cell;
+
+        // assigning this tile on that cell where this till is spawning 
+        this.cell.tile = this;
+
+        //setting the tile position to the current cell position
+        transform.position = cell.transform.position;
+    }
+
 }

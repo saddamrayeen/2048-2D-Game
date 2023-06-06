@@ -8,6 +8,9 @@ public class TileCell : MonoBehaviour
     public Vector2Int coordinates { get; set; }
     public Tile tile { get; set; }
 
-    bool isEmpty => tile == null;
-    bool isOccupied => tile != null;
+    // if tile is null then this is empty
+    public bool isEmpty => tile == null;
+    
+    //if tile is not null then this is not empty
+    public bool isOccupied => tile != null;
 }
